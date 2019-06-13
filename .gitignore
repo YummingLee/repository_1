@@ -1,2 +1,6 @@
 *.iml
 .idea
+target
+/ssm_web/*.iml
+/ssm_service/*.iml
+/ssm_dao/*.iml
