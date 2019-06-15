@@ -12,6 +12,8 @@
         <module>ssm_dao</module>
         <module>ssm_service</module>
         <module>ssm_web</module>
+        <module>ssm_domain</module>
+        <module>ssm_utils</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
