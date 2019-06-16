@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.dao.OrdersDao">
+    <resultMap id="orderMapper" type="orders">
+
+        <result property="id" column="id"/>
+        <result property="orderNum" column="orderNum"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="orderTimeStr" column="orderTimeStr"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <result property="orderStatusStr" column="orderStatusStr"/>
+        <association property="product" javaType="product">
+            <result property="productName" column="productName"/>
+            <result property="productPrice" column="productPrice"/>
+        </association>
+    </resultMap>
+    <select id="findAll" resultMap="orderMapper">
+        select o.id   ,o.ordernum ,p.productname,p.productprice,o.ordertime,o.orderstatus from orders o , product p where o.productid = p.id
+</select>
+</mapper>

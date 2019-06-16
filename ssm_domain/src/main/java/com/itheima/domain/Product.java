@@ -99,6 +99,13 @@ public class Product {
     }
 
     public String getProductStatusStr() {
+        if(productStatus != null){
+            if(productStatus == 0){
+                productStatusStr = "关闭";
+            }else if (productStatus == 1){
+                productStatusStr = "开启";
+            }
+        }
         return productStatusStr;
     }
 

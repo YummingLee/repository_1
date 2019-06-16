@@ -12,4 +12,7 @@
     <select id="findAll" resultType="com.itheima.domain.Product">
         select * from product
     </select>
+    <select id="findById" resultType="com.itheima.domain.Product">
+        select * from product where id = #{id}
+    </select>
 </mapper>
