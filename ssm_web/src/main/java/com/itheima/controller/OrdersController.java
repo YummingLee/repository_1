@@ -23,14 +23,25 @@ public class OrdersController {
     public ModelAndView findAll(@RequestParam(name = "page" ,defaultValue = "1") int page,@RequestParam(name = "size" , defaultValue = "5") int size){
         ModelAndView mv = new ModelAndView();
         List<Orders> ordersList = ordersService.findAll(page,size);
-        for (Orders orders : ordersList) {
-            System.out.println(orders);
-        }
+//        for (Orders orders : ordersList) {
+//            System.out.println(orders);
+//        }
         PageInfo<Orders> pageInfo = new PageInfo<Orders>(ordersList);
         mv.addObject("pageInfo",pageInfo);
         mv.setViewName("/orders-page-list");
         return mv;
 
+    }
+
+    @RequestMapping("/findById")
+    public ModelAndView findById(@RequestParam(name = "id") String id){
+
+        ModelAndView mv = new ModelAndView();
+        Orders orders = ordersService.findById(id);
+        mv.addObject("orders",orders);
+        mv.setViewName("/orders-show");
+
+        return mv;
     }
 
 }
