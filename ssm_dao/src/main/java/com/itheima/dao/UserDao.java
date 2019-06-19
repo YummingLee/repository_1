@@ -33,4 +33,16 @@ public interface UserDao {
 
     @Insert("insert into users(username,password,email,phoneNum,status) values(#{username},#{password},#{email},#{phoneNum},#{status})")
     void save(UserInfo user);
+
+    @Select("select * from users where id = #{id}")
+    @Results({
+            @Result(id = true, property = "id", column = "id"),
+            @Result(property = "username", column = "username"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "email",column = "email"),
+            @Result(property = "phoneNum",column = "phoneNum"),
+            @Result(property = "status",column = "status"),
+            @Result(property = "roles",column = "id" ,javaType =java.util.List.class,many = @Many(select = "com.itheima.dao.RolesDao.findRoleByUserId"))
+    })
+    UserInfo findById(String id);
 }

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -29,7 +32,7 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        User user = new User(userInfo.getUsername(),"{noop}"+userInfo.getPassword(),userInfo.getStatus()== 0 ? false:true,
+        User user = new User(userInfo.getUsername(),userInfo.getPassword(),userInfo.getStatus()== 0 ? false:true,
                 true,true,
                 true,getAuthority(userInfo.getRoles()));
 
@@ -53,6 +56,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(UserInfo user) {
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDao.save(user);
     }
+
+    @Override
+    public UserInfo findById(String id) {
+        return userDao.findById(id);
+    }
+
 }

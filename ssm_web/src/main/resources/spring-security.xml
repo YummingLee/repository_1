@@ -39,12 +39,12 @@
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="userService">
             <!-- 配置加密的方式 -->
-            <!--<security:password-encoder ref="passwordEncoder"/>-->
+            <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
     <!-- 配置加密类 -->
-    <!--<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 
 </beans>
