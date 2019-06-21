@@ -23,4 +23,7 @@ public interface PermissionsDao {
 
     @Insert("insert into permission(permissionName,url) values(#{permissionName},#{url})")
     void save(Permission permission);
+
+    @Select("select * from permission where id = #{permissionId}")
+    Permission findById(String permissionId);
 }

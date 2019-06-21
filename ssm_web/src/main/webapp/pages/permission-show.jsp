@@ -79,14 +79,14 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                用户管理
+                权限管理
                 <small>全部用户</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="${pageContext.request.contextPath}/index.jsp"><i
                         class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a
-                        href="${pageContext.request.contextPath}/user/findAll">用户管理</a></li>
+                        href="${pageContext.request.contextPath}/permission/findAll.do">权限管理</a></li>
 
                 <li class="active">全部用户</li>
             </ol>
@@ -139,24 +139,11 @@
                                 </tr>
                                 </thead>
                                 <tr data-tt-id="0">
-                                    <td colspan="2">${user.username}</td>
+                                    <td>${permission.permissionName}</td>
+                                    <td>${permission.url}</td>
                                 </tr>
 
-                                <tbody>
-                                <c:forEach items="${user.roles}" var="role" varStatus="vs1">
-                                    <tr data-tt-id="${vs1.index+1}" data-tt-parent-id="0">
-                                        <td>${role.roleName }</td>
-                                        <td>${role.roleDesc }</td>
-                                    </tr>
-                                    <c:forEach items="${role.permissions}" var="permission" varStatus="vs2">
-                                        <tr data-tt-id="${vs1.index+1}-${vs2.index+1}"
-                                            data-tt-parent-id="${vs1.index+1}">
-                                            <td>${permission.permissionName}</td>
-                                            <td>${permission.url}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:forEach>
-                                </tbody>
+
                             </table>
                         </div>
                         <!--数据列表/-->

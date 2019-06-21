@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @RolesAllowed("USER")
     public void save(UserInfo user) {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -64,6 +66,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfo findById(String id) {
         return userDao.findById(id);
+    }
+
+    @Override
+    public List<Role> findUserByIdAndAllRole(String userId) {
+        return userDao.findUserByIdAndAllRole(userId);
+    }
+
+    @Override
+    public void addRoleToUser(String userId, String[] rolesId) {
+        for (String roleId : rolesId) {
+            userDao.addRoleToUser(userId,roleId);
+        }
     }
 
 }

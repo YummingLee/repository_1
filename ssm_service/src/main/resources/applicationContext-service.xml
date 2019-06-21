@@ -18,7 +18,8 @@
 
 
 
-    <context:component-scan base-package="com.itheima.service"/>
+    <context:component-scan base-package="com.itheima"/>
+   <!-- <context:component-scan base-package="com.itheima.service"/>-->
 
     <!--事务-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -35,4 +36,5 @@
         <aop:advisor advice-ref="txAdvice" pointcut="execution( * com.itheima.service.impl.*.*(..))"/>
     </aop:config>
 
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

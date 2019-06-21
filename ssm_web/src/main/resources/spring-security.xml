@@ -7,6 +7,10 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:global-method-security pre-post-annotations="enabled"
+                                     jsr250-annotations="enabled"
+                                     secured-annotations="enabled"/>
+
     <!-- 配置不拦截的资源 -->
     <security:http pattern="/login.jsp" security="none"/>
     <security:http pattern="/failed.jsp" security="none"/>

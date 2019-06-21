@@ -151,7 +151,7 @@
 											<td>${role.roleDesc }</td>																				
 											<td class="text-center">
 												<a href="${pageContext.request.contextPath}/role/findById?id=${role.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole?id=${user.id}" class="btn bg-olive btn-xs">添加角色</a>
+												<a href="${pageContext.request.contextPath}/role/findRoleByIdAndPermission?id=${role.id}" class="btn bg-olive btn-xs">添加权限</a>
 											</td>
 										</tr>
 									</c:forEach>

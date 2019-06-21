@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!-- 页面头部 -->
 <header class="main-header">
@@ -24,7 +25,7 @@
 						class="user-image" alt="User Image"> <span class="hidden-xs">
 
 					</span>
-
+					<security:authentication property="principal.username"/>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
